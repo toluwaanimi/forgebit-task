@@ -1,0 +1,86 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  username: String!
+  password: String
+  posts: [Post!]
+}
+
+type Post {
+  id: Int!
+  title: String!
+  content: String!
+  category: String!
+  creator: User
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type AccountResponse {
+  """Example field (placeholder)"""
+  username: String!
+
+  """Example field (placeholder)"""
+  token: String!
+}
+
+type Query {
+  findAllPosts(filter: FilterSearchInput): [Post!]!
+  findOnePost(id: Int!): Post!
+}
+
+input FilterSearchInput {
+  title: String
+  category: String
+}
+
+type Mutation {
+  login(loginInput: LoginUserInput!): AccountResponse!
+  register(registerInput: RegisterUserInput!): AccountResponse!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
+  removePost(id: Int!): Post
+}
+
+input LoginUserInput {
+  """toluwanimi"""
+  username: String!
+
+  """Emmanuel"""
+  password: String!
+}
+
+input RegisterUserInput {
+  """toluwanimi"""
+  username: String!
+
+  """Emmanuel"""
+  password: String!
+}
+
+input CreatePostInput {
+  """You got hired by ForgeBit"""
+  title: String!
+
+  """Here is your hiring contract from ForgeBit"""
+  content: String!
+}
+
+input UpdatePostInput {
+  """You got hired by ForgeBit"""
+  title: String
+
+  """Here is your hiring contract from ForgeBit"""
+  content: String
+
+  """news"""
+  category: String
+}
